@@ -7,7 +7,7 @@ const STATUS_URL = "http://127.0.0.1:5000/status";
 
 setInterval(() => chrome.runtime.getPlatformInfo(() => {}), 20000);
 
-// Play sound using offscreen document
+// thisplays sound w offscreen document
 async function playSound() {
   const contexts = await chrome.runtime.getContexts({ contextTypes: ["OFFSCREEN_DOCUMENT"] });
 
@@ -22,7 +22,7 @@ async function playSound() {
   chrome.runtime.sendMessage({ type: "play_sound" });
 }
 
-// Send tab events to server
+//  tab events to server
 async function sendEvent(eventType, url) {
   try {
     const res = await chrome.storage.local.get(null);
@@ -43,7 +43,7 @@ async function sendEvent(eventType, url) {
   }
 }
 
-// Notifications
+// notifs
 async function notify(message, type) {
   const s = await chrome.storage.local.get(null);
   if (!s.gaze_enabled) return;
@@ -63,7 +63,7 @@ async function notify(message, type) {
     message
   });
 
-  // Sound only for eyes/face
+  // sound only for eye/face not deteced
   if (s.notify_sound && (type === 'eyes_away' || type === 'face_missing')) {
     playSound();
   }
@@ -71,7 +71,7 @@ async function notify(message, type) {
   lastNotified = now;
 }
 
-// Tab listeners
+// tab 
 chrome.tabs.onActivated.addListener(async (info) => {
   const settings = await chrome.storage.local.get(null);
   if (settings.gaze_enabled === false) return;
@@ -106,7 +106,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   }
 });
 
-// Poll server for eye/face status
+// poll server for eye/face status
 async function pollStatus() {
   try {
     const settings = await chrome.storage.local.get(null);
@@ -139,7 +139,7 @@ async function pollStatus() {
 
 setInterval(pollStatus, 2000);
 
-// Default settings
+// default settings
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.set({
     gaze_username: 'default_user',
