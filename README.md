@@ -5,7 +5,7 @@ NEW FEATURES:
 
 
 FEATURES FOR THE FUTURE:
-- Reward system in Today Summary (ur focused for X minutes) -- wont do in notifs cus thats prob just more distracting
+- Reward system in Today Summary (ur focused for X minutes) -- not in notifications, will probably cause more distraction.
 - Nicer logo/design touches
 
 installation instructions--
